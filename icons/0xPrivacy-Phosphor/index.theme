@@ -1,0 +1,10 @@
+[Icon Theme]
+Name=0xPrivacy-Phosphor
+Comment=0xPrivacy monochrome phosphor-green application covers
+Inherits=Yaru-olive-dark
+Directories=256x256/apps
+
+[256x256/apps]
+Size=256
+Type=Fixed
+Context=Applications
