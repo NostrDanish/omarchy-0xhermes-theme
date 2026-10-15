@@ -1,49 +1,40 @@
 # 0xHermes
 
-Omarchy theme for 0xPrivacy: forest-black surfaces, neon green `#39ff14`, rose signal `#ff2e63`, the 0xHermes wallpaper, and a 12 FPS screensaver of that same wallpaper.
+Omarchy theme. Install name is `0xhermes`, the same shape as `0xprivacy` and `dedsec`.
+
+Forest black, neon `#39ff14`, rose `#ff2e63`. Four wallpaper logos, the green/red icon set, and a 12 FPS screensaver of the with-logo still.
 
 ## Install
 
 ```bash
-omarchy theme install https://github.com/NostrDanish/0xHermes
-omarchy theme set 0xHermes
+omarchy theme install https://github.com/NostrDanish/omarchy-0xhermes-theme
+bash ~/.config/omarchy/themes/0xhermes/install.sh
+omarchy theme set 0xhermes
 ```
 
-If this checkout is already on disk, point Omarchy at it with a symlink. A bare git directory is treated as untrusted and Omarchy will drop `hyprland.lua`, `neovim.lua`, and `vscode.json`.
+`omarchy theme install` lowercases the repo and strips `omarchy-` and `-theme`, so this repository lands in `~/.config/omarchy/themes/0xhermes`. Do not pass `0xHermes`. That name is not a theme directory.
 
-```bash
-ln -sfn "$PWD" ~/.config/omarchy/themes/0xHermes
-omarchy theme set 0xHermes
-omarchy theme bg set ~/.config/omarchy/themes/0xHermes/backgrounds/0xhermes.png
-```
+A git checkout is untrusted. Omarchy then drops `hyprland.lua`, `neovim.lua`, and `vscode.json`. On a machine where those files should apply, replace the checkout with a symlink to your own copy and run `omarchy theme refresh`.
+
+## Wallpapers
+
+The background picker labels come from the filenames. `omarchy theme bg next` walks them in this order.
+
+| File | Picker label | What it is |
+|---|---|---|
+| `backgrounds/00-with-logo.png` | 00 With Logo | Mascot plus the `0x PRIVACY` wordmark. Default. Same bytes as `0xhermes.png`. |
+| `backgrounds/01-no-logo.png` | 01 No Logo | Mascot only. No wordmark. |
+| `backgrounds/02-wordmark.png` | 02 Wordmark | `0x PRIVACY` text. No mascot. |
+| `backgrounds/03-cipher-storm.png` | 03 Cipher Storm | Mascot, wordmark, and the verify line. |
+
+`backgrounds/0xhermes.png` is the frozen with-logo still. Do not regenerate or delete it. It is the same image as `00-with-logo.png`, so the picker lists both.
 
 ## Screensaver
 
-Omarchy does not install a screensaver when it applies a theme. After the theme is in place:
+`install.sh` copies the profile to `~/.config/omarchy/branding/screensavers/saved-0xhermes`. It does not select it.
 
 ```bash
-bash screensaver/install.sh
-omarchy-screensaver-profile set saved-0xprivacy
+omarchy-screensaver-profile set saved-0xhermes
 ```
 
-The attract is `screensaver/hermes-crazy.mp4`: the 0xHermes wallpaper with a rose scan, phosphor shear, and margin rain. One 6-second loop at 12 FPS. Any ordinary key quits.
-
-## Icons
-
-`icons.theme` names `0xPrivacy-Phosphor`. Regenerate the green/red launcher covers after installing or removing apps:
-
-```bash
-/usr/bin/python3 generate-app-icons.py
-gsettings set org.gnome.desktop.interface icon-theme '0xPrivacy-Phosphor'
-```
-
-Bright ink is neon green. Dark ink is rose.
-
-## Palette
-
-| Role | Hex |
-|---|---|
-| Background | `#020804` |
-| Neon green | `#39ff14` |
-| Rose signal | `#ff2e63` |
-| Text | `#c7f5ce` |
+The loop is `screensaver/hermes-crazy.mp4`: the with-logo wallpaper, rose scan, phosphor shear, margin rain. Six seconds, 12 FPS. Any ordinary key quits. Do not pass `--fps` to mpv.
