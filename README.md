@@ -18,7 +18,7 @@ omarchy theme set 0xhermes
 
 Theme directory name must be `0xhermes`. Do not pass `0xHermes`.
 
-`install.sh` copies the Phosphor icons and installs `~/.local/bin/omarchy-screensaver` so idle uses the 0xHermes mpv loop. Stock ttfx remains at `/usr/share/omarchy/bin/omarchy-screensaver`.
+`install.sh` copies the Phosphor icons, installs `~/.local/bin/omarchy-screensaver`, and adds `~/.config/hypr/prefer-local-bin.lua` so Hyprland finds that override before stock ttfx. Run `hyprctl reload` after install if the saver still shows ASCII.
 
 ## Wallpapers
 
