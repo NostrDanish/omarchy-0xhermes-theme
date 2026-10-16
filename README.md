@@ -6,15 +6,19 @@ Forest black, neon `#39ff14`, rose `#ff2e63`. Four wallpaper logos, the green/re
 
 ## Install
 
+A bare `omarchy theme install` clone is untrusted: Omarchy drops `hyprland.lua`, `neovim.lua`, terminal configs, and `vscode.json`. Use a symlink to your own checkout so the full theme applies, then run the installer for icons and the screensaver override.
+
 ```bash
-omarchy theme install https://github.com/NostrDanish/omarchy-0xhermes-theme
+git clone https://github.com/NostrDanish/omarchy-0xhermes-theme ~/Work/omarchy-0xhermes-theme
+mkdir -p ~/.config/omarchy/themes
+ln -sfn ~/Work/omarchy-0xhermes-theme ~/.config/omarchy/themes/0xhermes
 bash ~/.config/omarchy/themes/0xhermes/install.sh
 omarchy theme set 0xhermes
 ```
 
-`omarchy theme install` lowercases the repo and strips `omarchy-` and `-theme`, so this repository lands in `~/.config/omarchy/themes/0xhermes`. Do not pass `0xHermes`. That name is not a theme directory.
+Theme directory name must be `0xhermes`. Do not pass `0xHermes`.
 
-A git checkout is untrusted. Omarchy then drops `hyprland.lua`, `neovim.lua`, and `vscode.json`. On a machine where those files should apply, replace the checkout with a symlink to your own copy and run `omarchy theme refresh`.
+`install.sh` copies the Phosphor icons and installs `~/.local/bin/omarchy-screensaver` so idle uses the 0xHermes mpv loop. Stock ttfx remains at `/usr/share/omarchy/bin/omarchy-screensaver`.
 
 ## Wallpapers
 
@@ -31,10 +35,8 @@ The background picker labels come from the filenames. `omarchy theme bg next` wa
 
 ## Screensaver
 
-`install.sh` copies the profile to `~/.config/omarchy/branding/screensavers/saved-0xhermes`. It does not select it.
+`install.sh` installs `~/.local/bin/omarchy-screensaver` so idle uses the 0xHermes loop. Stock ttfx stays at `/usr/share/omarchy/bin/omarchy-screensaver`.
 
-```bash
-omarchy-screensaver-profile set saved-0xhermes
-```
+Preview: `omarchy-launch-screensaver force`
 
 The loop is `screensaver/hermes-crazy.mp4`: the with-logo wallpaper, rose scan, phosphor shear, margin rain. Six seconds, 12 FPS. Any ordinary key quits. Do not pass `--fps` to mpv.

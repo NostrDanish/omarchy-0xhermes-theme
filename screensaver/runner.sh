@@ -2,17 +2,12 @@
 set -euo pipefail
 
 # 0xHermes wallpaper, animated as one 12 FPS loop. Low priority.
+# Does not touch the Hyprland cursor — that used to stick invisible after a kill.
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 VIDEO="$SCRIPT_DIR/hermes-crazy.mp4"
 QUIT="$SCRIPT_DIR/quit-on-key.lua"
 
-restore_cursor() {
-  hyprctl eval 'hl.config({ cursor = { invisible = false } })' &>/dev/null || true
-}
-trap restore_cursor EXIT INT TERM HUP QUIT
-
 printf '\033]11;rgb:02/08/04\007'
-hyprctl eval 'hl.config({ cursor = { invisible = true } })' &>/dev/null || true
 
 if [[ -f "$VIDEO" && -f "$QUIT" ]] && command -v mpv >/dev/null; then
   nice -n 15 ionice -c3 mpv \

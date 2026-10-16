@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# 0xHermes screensaver. Idle finds this on PATH before the stock ttfx saver.
+# Do not touch the Hyprland cursor here — a killed saver used to leave it invisible.
+
+THEME="$HOME/.config/omarchy/themes/0xhermes/screensaver"
+
+if [[ ! -x $THEME/runner.sh ]]; then
+  exec /usr/share/omarchy/bin/omarchy-screensaver "$@"
+fi
+
+screensaver_in_focus() {
+  hyprctl activewindow -j 2>/dev/null | jq -e '.class == "org.omarchy.screensaver"' >/dev/null 2>&1
+}
+
+exit_screensaver() {
+  [[ -n ${anim:-} ]] && kill "$anim" 2>/dev/null || true
+  pkill -f 'mpv .*hermes-crazy\.mp4' 2>/dev/null || true
+  exit 0
+}
+
+trap exit_screensaver SIGINT SIGTERM SIGHUP SIGQUIT
+
+printf '\033]11;rgb:02/08/04\007'
+
+deadline=$((SECONDS + 2))
+while ((SECONDS < deadline)) && [[ $(stty size 2>/dev/null) == "24 80" ]]; do
+  sleep 0.02
+done
+
+export OMARCHY_SAVER_FPS="${OMARCHY_SAVER_FPS:-12}"
+seen_focus=0
+
+bash "$THEME/runner.sh" &
+anim=$!
+while kill -0 "$anim" 2>/dev/null; do
+  if read -r -n1 -t 0.25; then
+    exit_screensaver
+  fi
+  if screensaver_in_focus; then
+    seen_focus=1
+  elif ((seen_focus)); then
+    exit_screensaver
+  fi
+done
+
+exit_screensaver

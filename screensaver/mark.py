@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""0xPrivacy screensaver.
+"""0xHermes screensaver fallback when mpv is unavailable.
 
 Places the theme mark once, then moves a rose scan across it. One image,
 not a reel. Any key exits. Stays at or below 12 FPS.

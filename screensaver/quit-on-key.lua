@@ -1,4 +1,4 @@
--- Quit the 0xPrivacy screensaver on any ordinary key or click.
+-- Quit the 0xHermes screensaver on any ordinary key or click.
 local function quit()
   mp.command("quit 0")
 end

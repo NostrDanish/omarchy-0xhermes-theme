@@ -20,6 +20,6 @@ fi
 
 bash "$ROOT/screensaver/install.sh"
 
-printf '0xhermes pieces copied. Theme was not switched and the screensaver was not selected.\n'
+printf '0xhermes pieces installed (icons + screensaver override).\n'
 printf 'Select the theme with: omarchy theme set 0xhermes\n'
-printf 'Select the saver with: omarchy-screensaver-profile set saved-0xhermes\n'
+printf 'Preview the saver:     omarchy-launch-screensaver force\n'
