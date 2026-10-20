@@ -12,6 +12,7 @@ printf '\033]11;rgb:02/08/04\007'
 if [[ -f "$VIDEO" && -f "$QUIT" ]] && command -v mpv >/dev/null; then
   nice -n 15 ionice -c3 mpv \
     --fs \
+    --panscan=1.0 \
     --ontop \
     --no-border \
     --no-audio \
