@@ -1,26 +1,33 @@
--- 0xHermes v2: crisp phosphor borders, restrained gaps, and light transitions.
--- Blur stays off to keep the desktop fast and predictable.
+-- 0xHermes v3: phosphor edge on the focused window, rose on its shadow side,
+-- and enough gap that the plate reads through. Blur stays off: this desktop is
+-- for reading terminals, and translucency only blurs the text behind them.
 
-local active_border = { colors = { "rgba(39ff14ee)", "rgba(ff2e63ee)" }, angle = 45 }
-local inactive_border = "rgba(20492eaa)"
+local active_border = { colors = { "rgba(39ff14dd)", "rgba(ff2e63dd)" }, angle = 45 }
+local inactive_border = "rgba(2f7d4faa)"
 
 hl.config({
   general = {
     gaps_in = 6,
-    gaps_out = 12,
-    border_size = 1,
+    gaps_out = 14,
+    border_size = 2,
+    resize_on_border = true,
+    extend_border_grab_area = 8,
     col = {
       active_border = active_border,
       inactive_border = inactive_border,
     },
   },
   decoration = {
-    rounding = 8,
+    rounding = 10,
+    active_opacity = 1.0,
+    inactive_opacity = 0.97,
+    dim_inactive = true,
+    dim_strength = 0.12,
     shadow = {
       enabled = true,
-      range = 10,
-      render_power = 2,
-      color = "rgba(00000035)",
+      range = 18,
+      render_power = 3,
+      color = "rgba(0000004d)",
     },
     blur = {
       enabled = false,
