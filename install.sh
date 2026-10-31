@@ -22,6 +22,7 @@ for file in \
   backgrounds/30-hero-lockup.png \
   preview.png \
   unlock.png \
+  screensaver/hermes-rain.mp4 \
   screensaver/hermes-crazy.mp4 \
   screensaver/hermes-signal.mp4 \
   screensaver/mark.png \
@@ -49,6 +50,7 @@ fi
 
 # Install the saver profile: loop, poster, launcher scripts
 install -d "$DEST"
+install -m 0644 "$SCRIPT_DIR/screensaver/hermes-rain.mp4" "$DEST/hermes-rain.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/quit-on-key.lua" "$DEST/quit-on-key.lua"

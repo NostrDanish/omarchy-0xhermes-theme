@@ -55,9 +55,15 @@ generated alongside.
 
 ## Screensaver
 
-`screensaver/hermes-crazy.mp4`: the loved attract loop — 2560×1080, 12 FPS,
-12 seconds, H.264, no audio. It is the lead clip; `hermes-signal.mp4` (the v3
-signal loop) is the fallback.
+`screensaver/hermes-rain.mp4`: the lead loop — the approved plate with motion
+only *around* the girl: binary rain in the margins, a 2 px CRT refresh sweep, and
+the rose rule under the wordmark breathing. 2560×1080, 12 FPS, 12 seconds,
+H.264, no audio. Her pixels are never re-rendered, and every motion is periodic
+over 144 frames, so frame 144 is frame 0 by construction.
+
+`screensaver/hermes-crazy.mp4`: the loved original attract loop — 1920×1080, so
+it is upscaled onto a 2560×1080 panel and her scanlines soften. Kept as the
+first fallback. `hermes-signal.mp4` (the v3 signal loop) is the second.
 
 `omarchy-launch-screensaver force` previews it; any key or click exits. Without
 mpv, `mark.py` shows the poster and polls stdin instead of animating.
