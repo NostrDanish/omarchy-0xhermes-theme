@@ -38,20 +38,47 @@ omarchy theme bg next
 into `~/.local/bin`, and wires the local-bin preference the idle timer uses. It
 never changes your idle timeout.
 
-## Wallpapers
+## Asset catalog
 
-| File | Character |
+**Favorites** — the approved set. 2560×1080 unless noted.
+
+| File | Size | Source | What it is |
+|---|---|---|---|
+| `backgrounds/0xhermes.png` | 2560×1080 | original | the hero: girl + `0x PRIVACY` lockup (picker anchor) |
+| `backgrounds/00-with-logo.png` | 2560×1080 | original | byte-identical to `0xhermes.png` |
+| `backgrounds/01-no-logo.png` | 2560×1080 | original | hero, girl only |
+| `backgrounds/02-wordmark.png` | 2560×1080 | original | wordmark plate |
+| `backgrounds/03-cipher-storm.png` | 2560×1080 | original | `TRUST NOTHING · VERIFY EVERYTHING` variant |
+| `backgrounds/30-hero-lockup.png` | 2560×1080 | `tools/make_plate.py` | hero with the rule flushed under the wordmark |
+| `screensaver/hermes-rain.mp4` | 2560×1080, 12 fps, 12 s | `tools/make_saver.py` | **lead loop** — the plate with margin rain, CRT sweep, breathing rule |
+| `screensaver/hermes-crazy.mp4` | 1920×1080, 12 fps, 6 s | original | loved fallback (upscaled on this panel) |
+| `screensaver/mark.png` | 2560×1080 | `tools/make_saver.py` | poster — frame 0 of the rain loop |
+
+**Alternates** — kept and installed as fallbacks, not the approved look.
+
+| File | Size | What it is |
+|---|---|---|
+| `screensaver/hermes-signal.mp4` | 2560×1080, 12 fps, 12 s | v3 signal-temple loop, third fallback |
+| `backgrounds/10-signal-temple.png` | 2560×1080 | v3 signal-temple plate |
+| `backgrounds/11`–`13-*.png` | 2560×1080 | the rest of the v3 plates |
+
+**Derived branding** — regenerated from the plate, never hand-edited.
+
+| File | Size | What it is |
+|---|---|---|
+| `preview.png` | 2560×1440 | picker preview: the plate 1:1, ink-padded (never upscaled) |
+| `unlock.png`, `preview-unlock.png` | 1024×1024 | lock surface: the girl 1:1, centred on ink |
+| `screensaver/preview.png` | 2560×1080 | poster copy (frame 0) |
+
+**Quarantined** — tracked, so the lineage stays recoverable, never installed.
+
+| File | What it is |
 |---|---|
-| `0xhermes.png` | the hero: girl + `0x PRIVACY` lockup (picker anchor) |
-| `00-with-logo.png` | hero with the logo |
-| `01-no-logo.png` | hero, girl only |
-| `02-wordmark.png` | wordmark plate |
-| `03-cipher-storm.png` | `TRUST NOTHING · VERIFY EVERYTHING` variant |
-| `30-hero-lockup.png` | hero with the rule fixed under the wordmark |
-| `10`–`13-*.png` | the v3 signal-temple plates (kept as alternates) |
+| `legacy/v4-rejected/` | the rejected v4 dot-matrix build: plates, loop, generator |
+| `legacy/v3-signal-temple/preview-emblem.png` | the v3 emblem that `screensaver/preview.png` used to be |
 
-`preview.png` (2560×1440) and `unlock.png`/`preview-unlock.png` (1024²) are
-generated alongside.
+Photo-derived wallpapers, `cage.mp4` and `screensaver/plates/` are excluded on
+purpose — they are not the approved art and are not installed.
 
 ## Screensaver
 
@@ -73,13 +100,16 @@ Details and the file map: `screensaver/README.md`.
 ## Rebuild
 
 ```bash
-python3 tools/make_plate.py              # backgrounds/30-hero-lockup.png
+python3 tools/make_plate.py              # 30-hero-lockup.png + preview/unlock art
+python3 tools/make_saver.py              # hermes-rain.mp4 + mark.png + preview.png
 ```
 
-The plate is built from the hero's own pixels with Pillow, so it can only be
-as sharp as the hero — there is no higher-resolution source. Fonts:
-JetBrains Mono Nerd Font (`/usr/share/fonts/TTF`), DejaVu Sans Mono as the
-fallback.
+`make_plate.py` pastes the girl's real pixels out of `backgrounds/0xhermes.png`
+at 1:1 and only fixes the rule under the wordmark, so the plate can only be as
+sharp as the hero — there is no higher-resolution source. `make_saver.py` uses
+that plate as its base frame and moves rain, sweep and rule *around* her; it
+never re-renders her. Fonts: JetBrains Mono Nerd Font (`/usr/share/fonts/TTF`),
+DejaVu Sans Mono as the fallback.
 
 ## Notes
 

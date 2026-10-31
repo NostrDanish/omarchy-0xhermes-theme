@@ -33,6 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "backgrounds" / "30-hero-lockup.png"
 OUT = ROOT / "screensaver" / "hermes-rain.mp4"
 POSTER = ROOT / "screensaver" / "mark.png"
+PREVIEW = ROOT / "screensaver" / "preview.png"
 
 W, H = 2560, 1080
 FRAMES, FPS = 144, 12
@@ -103,6 +104,7 @@ def main() -> int:
             img = frame(base, tiles, i)
             if i == 0:
                 img.save(POSTER, optimize=True)
+                img.save(PREVIEW, optimize=True)
             proc.stdin.write(img.tobytes())
     except BrokenPipeError:
         pass

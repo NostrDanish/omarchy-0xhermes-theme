@@ -29,6 +29,9 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 HERO = ROOT / "backgrounds" / "0xhermes.png"
 OUT = ROOT / "backgrounds" / "30-hero-lockup.png"
+PREVIEW_OUT = ROOT / "preview.png"
+UNLOCK_OUT = ROOT / "unlock.png"
+UNLOCK_PREVIEW_OUT = ROOT / "preview-unlock.png"
 
 W, H = 2560, 1080
 INK = (2, 8, 4)
@@ -67,7 +70,42 @@ def build() -> Image.Image:
     return plate
 
 
+def render_preview(plate: Image.Image) -> Image.Image:
+    """Theme-picker preview: the approved plate 1:1, centred on ink.
+
+    The plate is 2560x1080 and this canvas is 2560x1440, so the band is
+    padded with flat INK rather than upscaled - no invented pixels, no
+    stretch, and the girl's scanlines stay exactly as they are.
+    """
+    canvas = Image.new("RGB", (2560, 1440), INK)
+    canvas.paste(plate, (0, (1440 - plate.height) // 2))
+    return canvas
+
+
+def render_unlock(plate: Image.Image) -> Image.Image:
+    """Lock surface: the girl 1:1 (no downscale, no glow), centred on ink.
+
+    769x818 of real portrait inside a 1024 square. Scaling her down to fit
+    the width would soften the hatching that IS the artwork, so she is
+    pasted at 1:1 and the rest is ink.
+    """
+    girl = plate.crop(GIRL_BOX)
+    canvas = Image.new("RGB", (1024, 1024), INK)
+    canvas.paste(girl, ((1024 - girl.width) // 2, (1024 - girl.height) // 2))
+    return canvas
+
+
 if __name__ == "__main__":
     out = build()
     out.save(OUT, optimize=True)
     print(f"wrote {OUT.name} ({OUT.stat().st_size // 1024} KiB)")
+
+    preview = render_preview(out)
+    preview.save(PREVIEW_OUT, optimize=True)
+    print(f"wrote {PREVIEW_OUT.name} ({PREVIEW_OUT.stat().st_size // 1024} KiB)")
+
+    unlock = render_unlock(out)
+    unlock.save(UNLOCK_OUT, optimize=True)
+    unlock.save(UNLOCK_PREVIEW_OUT, optimize=True)
+    print(f"wrote {UNLOCK_OUT.name} + {UNLOCK_PREVIEW_OUT.name} "
+          f"({UNLOCK_OUT.stat().st_size // 1024} KiB)")

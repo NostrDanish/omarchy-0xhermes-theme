@@ -4,14 +4,11 @@ __pycache__/
 # Duplicate nested theme repo (can be removed)
 omarchy-0xhermes-theme/
 
-# Legacy v1 wallpapers (replaced by v3)
-backgrounds/00-with-logo.png
-backgrounds/01-no-logo.png
-backgrounds/02-wordmark.png
-backgrounds/03-cipher-storm.png
-backgrounds/01-root-shell.png
-
-# Legacy v1 videos (replaced by v3)
-screensaver/hermes-crazy.mp4
-# Local rollback copies (regenerable from tools/)
-legacy/
+# Superseded v1/v2 passes: regenerable from tools/, and not part of the good
+# set. legacy/v4-rejected/ stays TRACKED on purpose - it is the rollback
+# lineage for the rejected v4 dot-matrix build, and it is already in history.
+legacy/*
+!legacy/v4-rejected/
+!legacy/v3-signal-temple/
+legacy/v3-signal-temple/*
+!legacy/v3-signal-temple/preview-emblem.png

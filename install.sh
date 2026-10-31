@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install/update the 0xHermes V3 theme assets, icons, and screensaver profile.
+# Install/update the 0xHermes theme assets, icons, and screensaver profile.
 PROFILE="saved-0xhermes"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 DEST="${HOME:?HOME must be set}/.config/omarchy/branding/screensavers/$PROFILE"
@@ -84,9 +84,9 @@ require("hypr.prefer-local-bin")
   fi
 fi
 
-printf '0xHermes v3 installed.\n'
+printf '0xHermes installed.\n'
 printf 'Theme dir:  %s\n' "$SCRIPT_DIR"
-printf 'Saver:      hermes-crazy.mp4 (loved loop) with hermes-signal.mp4 fallback\n'
+printf 'Saver:      hermes-rain.mp4 (lead) -> hermes-crazy.mp4 -> hermes-signal.mp4\n'
 printf 'Profile:    %s\n' "$DEST"
 printf 'Preview:    omarchy-launch-screensaver force\n'
-printf 'Wallpaper:  omarchy theme bg next   (or: omarchy theme bg set "Signal Temple")\n'
+printf 'Wallpaper:  omarchy theme bg set "%s/backgrounds/30-hero-lockup.png"\n' "$SCRIPT_DIR"
