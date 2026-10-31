@@ -6,24 +6,23 @@ accent for anything that matters. Theme slug: `0xhermes`.
 Palette: ink `#020804` · phosphor `#39ff14` · mint `#83ff60` · rose `#ff2e63` ·
 depth `#197d43` · foreground `#c7f5ce`.
 
-## What v4 is
+## What this theme is
 
-The loved DNA — the dot-matrix girl, ink + phosphor, one rose accent — rebuilt
-at 5K by one generator (`tools/generate_v4_assets.py`, spec in
-`docs/v4-brief.md`). The portrait is recovered from the frozen hero's own
-luminance (`tools/portrait.py`), so it is the same girl, drawn as a hard 8 px
-dot grid with portrait-only bloom and razor-sharp type.
+The portrait is **not redrawn**. `backgrounds/0xhermes.png` and the 00–03 set
+are the original 2560×1080 artwork — the girl's real pixels, the approved
+letterforms — and they are byte-identical to what shipped. 2560×1080 is
+native to this panel, so they land 1:1.
 
-- **Three 5120×2160 wallpapers**: `20-dot-matrix-hero` (full figure + wordmark),
-  `21-quiet-channel` (head crop, muted, no tagline), `22-cipher-storm`
-  (jittered dots + glitch lines).
-- **A seamless saver loop** `screensaver/hermes-dots.mp4`: travelling dot
-  dissolve wave, breathing bloom, scanline sweep — every motion periodic over
-  144 frames, so frame 0 == frame 143.
-- **Lock art** with the lower third left clean for the greeter.
-- The loved originals stay untouched: `0xhermes.png` is the frozen byte-identical
-  hero, `hermes-crazy.mp4` is still the first-choice saver, and the 00–03 set
-  plus the 10–13 v3 plates remain in the picker.
+`backgrounds/30-hero-lockup.png` is the one plate built on top of them
+(`tools/make_plate.py`): same girl, same wordmark, same tagline, every ink
+pixel byte-identical — the only change is the rule under `0x PRIVACY`, which
+used to stop 82 px short of PRIVACY's last stem and now runs flush from the
+wordmark's left edge to it, tying `0x` and `PRIVACY` into one lockup.
+
+A previous pass rebuilt the girl by recovering her luminance from the hero's
+own pixels and re-halftoning it onto a new dot grid, then added a Gaussian
+bloom and a scan band. That was a photocopy of a photocopy and it looked
+worse than the original; its plates and loop live in `legacy/v4-rejected/`.
 
 ## Install
 
@@ -41,23 +40,24 @@ never changes your idle timeout.
 
 ## Wallpapers
 
-| File | Picker name | Character |
-|---|---|---|
-| `00-signal-temple.png` | Signal Temple | hero: sigil, horizon, waveform, full type block |
-| `01-open-channel.png` | Open Channel | same plate, quiet: sigil only, one small label |
-| `02-ghost-grid.png` | Ghost Grid | no sigil: grid, watermark mark, corner telemetry |
-| `03-rose-protocol.png` | Rose Protocol | rose-led accent, rose ring on the sigil |
-| `0xhermes.png` | — | byte-identical copy of the hero (picker anchor) |
+| File | Character |
+|---|---|
+| `0xhermes.png` | the hero: girl + `0x PRIVACY` lockup (picker anchor) |
+| `00-with-logo.png` | hero with the logo |
+| `01-no-logo.png` | hero, girl only |
+| `02-wordmark.png` | wordmark plate |
+| `03-cipher-storm.png` | `TRUST NOTHING · VERIFY EVERYTHING` variant |
+| `30-hero-lockup.png` | hero with the rule fixed under the wordmark |
+| `10`–`13-*.png` | the v3 signal-temple plates (kept as alternates) |
 
 `preview.png` (2560×1440) and `unlock.png`/`preview-unlock.png` (1024²) are
 generated alongside.
 
 ## Screensaver
 
-`screensaver/hermes-signal.mp4`: the sigil rotates once per loop, three packet
-dots ride closed orbits, a rose scanner sweeps from off-screen left to
-off-screen right, and the core light breathes. Nothing is cropped at the loop
-point, so `--loop-file=inf` looks continuous.
+`screensaver/hermes-crazy.mp4`: the loved attract loop — 2560×1080, 12 FPS,
+12 seconds, H.264, no audio. It is the lead clip; `hermes-signal.mp4` (the v3
+signal loop) is the fallback.
 
 `omarchy-launch-screensaver force` previews it; any key or click exits. Without
 mpv, `mark.py` shows the poster and polls stdin instead of animating.
@@ -67,22 +67,22 @@ Details and the file map: `screensaver/README.md`.
 ## Rebuild
 
 ```bash
-python3 tools/generate_v3_assets.py           # wallpapers, lock art, previews
-python3 tools/generate_v3_assets.py --video   # + the saver loop (ffmpeg/libx264)
-python3 tools/generate_v3_assets.py --all     # both
+python3 tools/make_plate.py              # backgrounds/30-hero-lockup.png
 ```
 
-Everything is drawn with Pillow: ~35 s for the stills, ~2 min for the loop on
-this desktop. No network access at build time, no third-party artwork.
-
-Fonts: JetBrains Mono Nerd Font (`/usr/share/fonts/TTF`), with DejaVu Sans Mono
-as the fallback.
+The plate is built from the hero's own pixels with Pillow, so it can only be
+as sharp as the hero — there is no higher-resolution source. Fonts:
+JetBrains Mono Nerd Font (`/usr/share/fonts/TTF`), DejaVu Sans Mono as the
+fallback.
 
 ## Notes
 
 - `hermes.yaml` must stay pure ASCII — `omarchy-theme-set-hermes` rejects the
   skin if any byte falls outside printable ASCII (an em dash is enough), and the
   failure is only a warning.
+- `hyprland.lua` borders apply at the next Hyprland start; `hyprctl reload`
+  does not re-read the Lua config.
 - App icons regenerate with `python3 generate-app-icons.py`; Telegram and VS Code
   variants have their own `generate-*.py` scripts.
-- `legacy/v1*` and `legacy/v2-second-pass/` hold earlier passes for rollback.
+- `legacy/v1*`, `legacy/v2-second-pass/`, `legacy/v3-signal-temple/` and
+  `legacy/v4-rejected/` hold earlier passes for rollback.

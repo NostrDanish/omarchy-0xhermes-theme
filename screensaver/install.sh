@@ -10,7 +10,7 @@ HYPR_DIR="${HOME}/.config/hypr"
 HYPR_PATH_LUA="$HYPR_DIR/prefer-local-bin.lua"
 HYPRLAND_LUA="$HYPR_DIR/hyprland.lua"
 
-for file in hermes-dots.mp4 hermes-crazy.mp4 hermes-signal.mp4 quit-on-key.lua runner.sh mark.py mark.png preview.png \
+for file in hermes-crazy.mp4 hermes-signal.mp4 quit-on-key.lua runner.sh mark.py mark.png preview.png \
   README.md omarchy-screensaver prefer-local-bin.lua; do
   if [[ ! -f "$SCRIPT_DIR/$file" ]]; then
     printf 'Missing package file: %s\n' "$SCRIPT_DIR/$file" >&2
@@ -19,7 +19,6 @@ for file in hermes-dots.mp4 hermes-crazy.mp4 hermes-signal.mp4 quit-on-key.lua r
 done
 
 install -d "$DEST"
-install -m 0644 "$SCRIPT_DIR/hermes-dots.mp4" "$DEST/hermes-dots.mp4"
 install -m 0644 "$SCRIPT_DIR/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
 install -m 0644 "$SCRIPT_DIR/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 rm -f "$DEST/hermes-v2.mp4"

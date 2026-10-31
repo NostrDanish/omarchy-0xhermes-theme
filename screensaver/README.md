@@ -1,11 +1,7 @@
-# 0xHermes v3 screensaver — Signal Temple
+# 0xHermes screensaver
 
-A slow orbital signal loop: 2560×1080, 12 FPS, 12 seconds, H.264, no audio.
+The loved attract loop: 2560×1080, 12 FPS, 12 seconds, H.264, no audio.
 It is pre-rendered, so the idle path does no per-pixel animation work.
-
-The loop is seamless by construction: the dashed ring turns exactly once, the
-three packet orbits complete whole turns, and the scanner sweep is off-canvas at
-both ends. Looping the file therefore has no visible cut.
 
 `runner.sh` prefers mpv with safe hardware decoding and low process priority; if
 mpv is missing or fails, `mark.py` falls back to the poster frame with
@@ -15,9 +11,8 @@ lightweight input polling instead of a repaint loop.
 
 | File | Role |
 |---|---|
-| `hermes-dots.mp4` | the v4 loop: dot dissolve wave, breathing bloom, scan sweep |
-| `hermes-crazy.mp4` | the loved original attract loop (first fallback) |
-| `hermes-signal.mp4` | the v3 signal-temple loop (second fallback) |
+| `hermes-crazy.mp4` | the loved attract loop (lead) |
+| `hermes-signal.mp4` | the v3 signal-temple loop (fallback) |
 | `mark.png` | poster frame, also the fallback image |
 | `mark.py` | no-mpv fallback: draws the poster, polls stdin, exits on a key |
 | `runner.sh` | picks mpv or the fallback, sets a near-black terminal background |
@@ -43,9 +38,8 @@ at 12 FPS.
 
 ## Rebuild
 
-```bash
-python3 tools/generate_v3_assets.py --video
-```
-
-The encoder writes yuv420p H.264 at CRF 18 from the same Pillow drawing code
-that makes the wallpapers, so the saver and the desktop art share one palette.
+The clips are encoded from Pillow frames with ffmpeg/libx264 (yuv420p, CRF 18),
+so the saver and the desktop art share one palette. A rejected v4 loop — dots
+re-halftoned from the hero's own luminance, with a bloom that clamped to solid
+halos and a scan band drawn without alpha compositing — is kept in
+`legacy/v4-rejected/` for rollback only.

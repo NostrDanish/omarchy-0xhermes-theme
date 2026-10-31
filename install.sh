@@ -19,13 +19,10 @@ for file in \
   backgrounds/02-wordmark.png \
   backgrounds/03-cipher-storm.png \
   backgrounds/10-signal-temple.png \
-  backgrounds/20-dot-matrix-hero.png \
-  backgrounds/21-quiet-channel.png \
-  backgrounds/22-cipher-storm.png \
+  backgrounds/30-hero-lockup.png \
   preview.png \
   unlock.png \
   screensaver/hermes-crazy.mp4 \
-  screensaver/hermes-dots.mp4 \
   screensaver/hermes-signal.mp4 \
   screensaver/mark.png \
   screensaver/runner.sh \
@@ -53,7 +50,6 @@ fi
 # Install the saver profile: loop, poster, launcher scripts
 install -d "$DEST"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
-install -m 0644 "$SCRIPT_DIR/screensaver/hermes-dots.mp4" "$DEST/hermes-dots.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/quit-on-key.lua" "$DEST/quit-on-key.lua"
 install -m 0644 "$SCRIPT_DIR/screensaver/mark.py" "$DEST/mark.py"
@@ -62,7 +58,7 @@ install -m 0644 "$SCRIPT_DIR/screensaver/mark.png" "$DEST/preview.png"
 install -m 0644 "$SCRIPT_DIR/screensaver/README.md" "$DEST/README.md"
 install -m 0755 "$SCRIPT_DIR/screensaver/runner.sh" "$DEST/runner.sh"
 # v2 leftovers are no longer referenced by any path
-rm -f "$DEST/hermes-v2.mp4" "$DEST/v3-signal.html"
+rm -f "$DEST/hermes-v2.mp4" "$DEST/v3-signal.html" "$DEST/hermes-dots.mp4"
 
 # Install screensaver wrapper to ~/.local/bin
 install -d "$(dirname "$BIN_DEST")"
