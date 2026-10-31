@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# 0xHermes screensaver. Idle finds this on PATH before the stock ttfx saver.
-# Do not touch the Hyprland cursor here — a killed saver used to leave it invisible.
+# 0xHermes v3 screensaver. Idle finds this before the stock ttfx saver.
+# Keep cleanup in the runner so the mpv child is always terminated with it.
 
 THEME="$HOME/.config/omarchy/themes/0xhermes/screensaver"
 
@@ -12,9 +12,15 @@ screensaver_in_focus() {
   hyprctl activewindow -j 2>/dev/null | jq -e '.class == "org.omarchy.screensaver"' >/dev/null 2>&1
 }
 
+stop_animation() {
+  if [[ -n ${anim:-} ]] && kill -0 "$anim" 2>/dev/null; then
+    kill -TERM "$anim" 2>/dev/null || true
+    wait "$anim" 2>/dev/null || true
+  fi
+}
+
 exit_screensaver() {
-  [[ -n ${anim:-} ]] && kill "$anim" 2>/dev/null || true
-  pkill -f 'mpv .*hermes-crazy\.mp4' 2>/dev/null || true
+  stop_animation
   exit 0
 }
 

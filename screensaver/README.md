@@ -1,6 +1,27 @@
-# 0xHermes screensaver
+# 0xHermes v3 screensaver — Signal Temple
 
-One 12 FPS loop of the with-logo wallpaper: rose scan, phosphor shear, margin rain. Not a slideshow.
+A slow orbital signal loop: 2560×1080, 12 FPS, 12 seconds, H.264, no audio.
+It is pre-rendered, so the idle path does no per-pixel animation work.
+
+The loop is seamless by construction: the dashed ring turns exactly once, the
+three packet orbits complete whole turns, and the scanner sweep is off-canvas at
+both ends. Looping the file therefore has no visible cut.
+
+`runner.sh` prefers mpv with safe hardware decoding and low process priority; if
+mpv is missing or fails, `mark.py` falls back to the poster frame with
+lightweight input polling instead of a repaint loop.
+
+## Files
+
+| File | Role |
+|---|---|
+| `hermes-signal.mp4` | the loop (12 s, 144 frames) |
+| `mark.png` | poster frame, also the fallback image |
+| `mark.py` | no-mpv fallback: draws the poster, polls stdin, exits on a key |
+| `runner.sh` | picks mpv or the fallback, sets a near-black terminal background |
+| `quit-on-key.lua` | mpv script: any key or click quits |
+| `omarchy-screensaver` | entry point Omarchy's idle launcher calls |
+| `prefer-local-bin.lua` | puts `~/.local/bin` ahead of the stock saver |
 
 ## Install
 
@@ -8,10 +29,21 @@ One 12 FPS loop of the with-logo wallpaper: rose scan, phosphor shear, margin ra
 bash ~/.config/omarchy/themes/0xhermes/screensaver/install.sh
 ```
 
-That installs `~/.local/bin/omarchy-screensaver` and `~/.config/hypr/prefer-local-bin.lua`. Omarchy prepends `$OMARCHY_PATH/bin` to PATH, so without the Hyprland fix idle still runs the stock ttfx ASCII saver (often still branded 0xPRIVACY).
+This updates `~/.local/bin/omarchy-screensaver`, the `saved-0xhermes` snapshot,
+and the Hyprland local-bin preference used by Omarchy's idle launcher. It does
+not change the idle timeout.
 
-Preview: `omarchy-launch-screensaver force`  
-Stock: `/usr/share/omarchy/bin/omarchy-screensaver`  
-If preview still shows ASCII: `hyprctl reload`, then preview again.
+Preview: `omarchy-launch-screensaver force`
+Stock fallback: `/usr/share/omarchy/bin/omarchy-screensaver`
 
-Do not pass `--fps` to mpv. The video file is already 12 FPS. Any ordinary key quits.
+Any key or click exits. Do not pass `--fps` to mpv; the file is already encoded
+at 12 FPS.
+
+## Rebuild
+
+```bash
+python3 tools/generate_v3_assets.py --video
+```
+
+The encoder writes yuv420p H.264 at CRF 18 from the same Pillow drawing code
+that makes the wallpapers, so the saver and the desktop art share one palette.

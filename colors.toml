@@ -1,6 +1,6 @@
 mode = "dark"
 
-# 0xPrivacy dark-web palette: neon phosphor, forest green, and rose-red traces.
+# 0xHermes v3: neon phosphor over forest-black, rose as the signal accent.
 accent = "#39ff14"
 selection = "#10311b"
 muted = "#426b4b"

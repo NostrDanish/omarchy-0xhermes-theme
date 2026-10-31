@@ -1,18 +1,18 @@
 name: omarchy
-description: 0xPrivacy dark-web phosphor
+description: 0xHermes v3 - signal intelligence, phosphor glow, ghost grid
 colors:
   background: "#020804"
   ui_text: "#c7f5ce"
   ui_primary: "#39ff14"
   ui_accent: "#ff2e63"
-  ui_border: "#1a4b2a"
+  ui_border: "#197d43"
   ui_label: "#83ff60"
   ui_ok: "#39ff14"
   ui_warn: "#ff8aa3"
   ui_error: "#ff2e63"
   ui_tool: "#ff2e63"
   ui_thinking: "#426b4b"
-  banner_border: "#1a4b2a"
+  banner_border: "#197d43"
   banner_title: "#39ff14"
   banner_accent: "#ff2e63"
   banner_dim: "#426b4b"
@@ -38,7 +38,7 @@ colors:
   completion_menu_meta_bg: "#020804"
   completion_menu_meta_current_bg: "#39ff14"
   diff_added: "#0b2513"
-  diff_removed: "#3a0c1a"
+  diff_removed: "#3a0c2a"
   diff_added_word: "#83ff60"
   diff_removed_word: "#ff8aa3"
   syntax_string: "#9bffad"

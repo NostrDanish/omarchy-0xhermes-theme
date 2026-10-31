@@ -1,2 +1,17 @@
 __pycache__/
 *.pyc
+
+# Duplicate nested theme repo (can be removed)
+omarchy-0xhermes-theme/
+
+# Legacy v1 wallpapers (replaced by v3)
+backgrounds/00-with-logo.png
+backgrounds/01-no-logo.png
+backgrounds/02-wordmark.png
+backgrounds/03-cipher-storm.png
+backgrounds/01-root-shell.png
+
+# Legacy v1 videos (replaced by v3)
+screensaver/hermes-crazy.mp4
+# Local rollback copies (regenerable from tools/)
+legacy/
