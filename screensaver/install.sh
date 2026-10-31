@@ -10,7 +10,7 @@ HYPR_DIR="${HOME}/.config/hypr"
 HYPR_PATH_LUA="$HYPR_DIR/prefer-local-bin.lua"
 HYPRLAND_LUA="$HYPR_DIR/hyprland.lua"
 
-for file in hermes-signal.mp4 quit-on-key.lua runner.sh mark.py mark.png preview.png \
+for file in hermes-crazy.mp4 hermes-signal.mp4 quit-on-key.lua runner.sh mark.py mark.png preview.png \
   README.md omarchy-screensaver prefer-local-bin.lua; do
   if [[ ! -f "$SCRIPT_DIR/$file" ]]; then
     printf 'Missing package file: %s\n' "$SCRIPT_DIR/$file" >&2
@@ -19,6 +19,7 @@ for file in hermes-signal.mp4 quit-on-key.lua runner.sh mark.py mark.png preview
 done
 
 install -d "$DEST"
+install -m 0644 "$SCRIPT_DIR/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
 install -m 0644 "$SCRIPT_DIR/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 rm -f "$DEST/hermes-v2.mp4"
 install -m 0644 "$SCRIPT_DIR/quit-on-key.lua" "$DEST/quit-on-key.lua"
@@ -34,17 +35,8 @@ install -m 0755 "$SCRIPT_DIR/omarchy-screensaver" "$BIN_DEST"
 install -d "$HYPR_DIR"
 install -m 0644 "$SCRIPT_DIR/prefer-local-bin.lua" "$HYPR_PATH_LUA"
 
-if [[ -f $HYPRLAND_LUA ]] && ! grep -q 'prefer-local-bin' "$HYPRLAND_LUA"; then
-  if grep -q 'require("hypr.autostart")' "$HYPRLAND_LUA"; then
-    # shellcheck disable=SC2016
-    sed -i '/require("hypr.autostart")/a\
-\
--- After Omarchy prepends $OMARCHY_PATH/bin, prefer ~/.local/bin for theme savers.\
-require("hypr.prefer-local-bin")
-' "$HYPRLAND_LUA"
-  else
-    printf '\n-- Prefer the local 0xHermes screensaver over the stock saver.\nrequire("hypr.prefer-local-bin")\n' >>"$HYPRLAND_LUA"
-  fi
+if [[ -f $HYPRLAND_LUA ]] && ! grep -q 'prefer-local-bin' "$HYPRLAND_LUA" 2>/dev/null; then
+  printf '\n-- Prefer the local 0xHermes screensaver over the stock saver.\nrequire("hypr.prefer-local-bin")\n' >>"$HYPRLAND_LUA"
 fi
 
 printf 'Installed the 0xHermes v3 screensaver.\n'

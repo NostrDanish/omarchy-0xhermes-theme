@@ -14,12 +14,14 @@ HYPRLAND_LUA="$HYPR_DIR/hyprland.lua"
 for file in \
   colors.toml \
   backgrounds/0xhermes.png \
-  backgrounds/00-signal-temple.png \
-  backgrounds/01-open-channel.png \
-  backgrounds/02-ghost-grid.png \
-  backgrounds/03-rose-protocol.png \
+  backgrounds/00-with-logo.png \
+  backgrounds/01-no-logo.png \
+  backgrounds/02-wordmark.png \
+  backgrounds/03-cipher-storm.png \
+  backgrounds/10-signal-temple.png \
   preview.png \
   unlock.png \
+  screensaver/hermes-crazy.mp4 \
   screensaver/hermes-signal.mp4 \
   screensaver/mark.png \
   screensaver/runner.sh \
@@ -46,6 +48,7 @@ fi
 
 # Install the saver profile: loop, poster, launcher scripts
 install -d "$DEST"
+install -m 0644 "$SCRIPT_DIR/screensaver/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/quit-on-key.lua" "$DEST/quit-on-key.lua"
 install -m 0644 "$SCRIPT_DIR/screensaver/mark.py" "$DEST/mark.py"
@@ -80,7 +83,7 @@ fi
 
 printf '0xHermes v3 installed.\n'
 printf 'Theme dir:  %s\n' "$SCRIPT_DIR"
-printf 'Saver:      hermes-signal.mp4 (2560x1080, 12 FPS, seamless 12 s)\n'
+printf 'Saver:      hermes-crazy.mp4 (loved loop) with hermes-signal.mp4 fallback\n'
 printf 'Profile:    %s\n' "$DEST"
 printf 'Preview:    omarchy-launch-screensaver force\n'
 printf 'Wallpaper:  omarchy theme bg next   (or: omarchy theme bg set "Signal Temple")\n'

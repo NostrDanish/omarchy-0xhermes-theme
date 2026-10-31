@@ -4,8 +4,8 @@ set -euo pipefail
 # 0xHermes v3: pre-rendered 12 FPS loop, low priority, no audio.
 # Without mpv this falls back to mark.py (poster + input poll, no repaint loop).
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-VIDEO="$SCRIPT_DIR/hermes-signal.mp4"
-LEGACY_VIDEO="$SCRIPT_DIR/hermes-v2.mp4"
+VIDEO="$SCRIPT_DIR/hermes-crazy.mp4"
+LEGACY_VIDEO="$SCRIPT_DIR/hermes-signal.mp4"
 QUIT="$SCRIPT_DIR/quit-on-key.lua"
 
 [[ -f $VIDEO ]] || VIDEO="$LEGACY_VIDEO"
