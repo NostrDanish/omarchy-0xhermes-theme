@@ -19,9 +19,13 @@ for file in \
   backgrounds/02-wordmark.png \
   backgrounds/03-cipher-storm.png \
   backgrounds/10-signal-temple.png \
+  backgrounds/20-dot-matrix-hero.png \
+  backgrounds/21-quiet-channel.png \
+  backgrounds/22-cipher-storm.png \
   preview.png \
   unlock.png \
   screensaver/hermes-crazy.mp4 \
+  screensaver/hermes-dots.mp4 \
   screensaver/hermes-signal.mp4 \
   screensaver/mark.png \
   screensaver/runner.sh \
@@ -49,6 +53,7 @@ fi
 # Install the saver profile: loop, poster, launcher scripts
 install -d "$DEST"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-crazy.mp4" "$DEST/hermes-crazy.mp4"
+install -m 0644 "$SCRIPT_DIR/screensaver/hermes-dots.mp4" "$DEST/hermes-dots.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/hermes-signal.mp4" "$DEST/hermes-signal.mp4"
 install -m 0644 "$SCRIPT_DIR/screensaver/quit-on-key.lua" "$DEST/quit-on-key.lua"
 install -m 0644 "$SCRIPT_DIR/screensaver/mark.py" "$DEST/mark.py"

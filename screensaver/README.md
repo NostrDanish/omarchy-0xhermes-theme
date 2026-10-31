@@ -15,7 +15,9 @@ lightweight input polling instead of a repaint loop.
 
 | File | Role |
 |---|---|
-| `hermes-signal.mp4` | the loop (12 s, 144 frames) |
+| `hermes-dots.mp4` | the v4 loop: dot dissolve wave, breathing bloom, scan sweep |
+| `hermes-crazy.mp4` | the loved original attract loop (first fallback) |
+| `hermes-signal.mp4` | the v3 signal-temple loop (second fallback) |
 | `mark.png` | poster frame, also the fallback image |
 | `mark.py` | no-mpv fallback: draws the poster, polls stdin, exits on a key |
 | `runner.sh` | picks mpv or the fallback, sets a near-black terminal background |

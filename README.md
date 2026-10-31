@@ -6,16 +6,24 @@ accent for anything that matters. Theme slug: `0xhermes`.
 Palette: ink `#020804` · phosphor `#39ff14` · mint `#83ff60` · rose `#ff2e63` ·
 depth `#197d43` · foreground `#c7f5ce`.
 
-## What v3 is
+## What v4 is
 
-- **Four 5120×2160 wallpapers** drawn from one generator: a full-bleed horizon,
-  an instrument trace spanning the width, a winged-H sigil in a hexagonal
-  aperture, and a type block held inside the safe zone of the top bar.
-- **A seamless 12 FPS saver loop** (2560×1080, 144 frames) rendered by the same
-  drawing code, so the screensaver and the wallpaper cannot drift apart.
-- **A real Hermes skin**: `hermes.yaml` publishes the palette into the Hermes
-  desktop app, TUI and CLI.
-- **Lock art** with the lower third left clean for the greeter's password field.
+The loved DNA — the dot-matrix girl, ink + phosphor, one rose accent — rebuilt
+at 5K by one generator (`tools/generate_v4_assets.py`, spec in
+`docs/v4-brief.md`). The portrait is recovered from the frozen hero's own
+luminance (`tools/portrait.py`), so it is the same girl, drawn as a hard 8 px
+dot grid with portrait-only bloom and razor-sharp type.
+
+- **Three 5120×2160 wallpapers**: `20-dot-matrix-hero` (full figure + wordmark),
+  `21-quiet-channel` (head crop, muted, no tagline), `22-cipher-storm`
+  (jittered dots + glitch lines).
+- **A seamless saver loop** `screensaver/hermes-dots.mp4`: travelling dot
+  dissolve wave, breathing bloom, scanline sweep — every motion periodic over
+  144 frames, so frame 0 == frame 143.
+- **Lock art** with the lower third left clean for the greeter.
+- The loved originals stay untouched: `0xhermes.png` is the frozen byte-identical
+  hero, `hermes-crazy.mp4` is still the first-choice saver, and the 00–03 set
+  plus the 10–13 v3 plates remain in the picker.
 
 ## Install
 
